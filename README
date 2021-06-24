@@ -1,0 +1,18 @@
+Automatically generates tkinter forms by reading a jsonschema document.
+
+The json files are found through the read_with_id method in the read_schema.py module.
+By default, it will look for files in a directory called "resources": tests will fail without this directory.
+
+For now, schema files that contain references (through "$ref" or "data" keywords) must have a "file_dependencies"
+property with as value the list of the referenced files
+
+
+form_builder.py is the main file (and will be split in the future). It handles the recursive building of the form and
+the interpretation of the user's inputs
+
+scrollable_frame.py and tooltip.py are custom widgets for tkinter
+
+validation.py upgrades the standard jsonschema validator with two extra keywords:
+ - data lets you get data from any json file, including the instance
+ - isPropertyOf lets you indicate that the value must be a property of a specific object
+ (json equivalent to key of specific dictionary)
