@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "activities_schema.json",
+  "file_dependencies": [
+    "temp_available_rooms.json",
+    "temp_available_items.json",
+    "temp_available_skills.json"
+  ],
+  "title": "Activities",
+  "description": "Something a character can do",
+  "type": "object",
+  "additionalProperties": false,
+  "minProperties": 1,
+  "maxProperties": 1,
+  "properties": {
+
+    "Construct_Buildings": {
+      "type": "object",
+      "description": "to make new buildings/organizations",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "name of the building/organization"
+        },
+        "Components": {
+          "type": "array",
+          "description": "rooms and teams for the building/organization",
+          "items": {
+            "type": "string",
+            "$ref": "temp_available_rooms.json"
+          }
+        }
+      },
+      "required": ["Name", "Components"]
+    },
+
+    "Craft_Item": {
+      "type": "object",
+      "description": "to make new items",
+      "properties": {
+        "Item": {
+          "type": "string",
+          "$ref": "temp_available_items.json"
+        },
+        "Materials": {
+          "type": "integer",
+          "$comment": "TODO: type is actually quantity of each capital to use"
+        }
+      },
+      "required": ["Item"]
+    },
+
+    "Earn_Capital": {
+      "type": "object",
+      "description": "to get capital through personal work",
+      "properties": {
+        "Capital": {
+          "enum": ["Goods", "Influence", "Labor", "Magic", "Gp"],
+          "$comment": "TODO: get the enum from somewhere else"
+        },
+        "Skill": {
+          "type": "string",
+          "$ref": "temp_available_skills.json"
+        },
+        "Max_Buy": {"type": "integer"}
+      },
+      "required": ["Capital", "Skill"]
+    },
+
+    "Earn_XP": {"type": "null"},
+
+    "Gather Information": {
+      "type": "object",
+      "description": "ask around",
+      "properties": {
+        "Spend_Influence": {"type": "boolean"},
+        "Questions": {"type": "string"}
+      }
+    },
+
+    "Heal Others": {
+      "type": "object",
+      "description": "fix someone else's issues",
+      "properties": {
+        "Spend_Labor": {"type": "boolean"},
+        "Details": {"type": "string"}
+      }
+    },
+
+    "Lead your Kingdom": {
+      "type": "object",
+      "properties":{
+        "Kingdom": {"type": "string"}
+      }
+    },
+
+    "Promote a Business": {
+      "type": "object",
+      "properties": {
+        "Business": {
+          "type": "string",
+          "description": "which business to improve"
+        },
+        "Capital": {
+          "type": "string",
+          "description": "which capital prod to improve"
+        },
+        "Skill": {"type": "string"},
+        "Spend": {
+          "type": "string",
+          "description": "capital dict with quantities"
+        }
+      }
+    },
+
+    "Replace Minion": {"type": "string"},
+    "Research a Spell": {}
+  }
+}

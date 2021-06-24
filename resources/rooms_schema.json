@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rooms_schema.json",
+  "title": "Room",
+  "description": "A type of room you can use for your buildings",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "description": "Human-readable name",
+      "type": "string"
+    },
+    "Source": {
+      "description": "book where this room appeared",
+      "type": "string"
+    },
+    "Earnings": {
+      "description": "bonus to capital production",
+      "type": "object",
+      "properties": {
+        "Bonus": {
+          "description": "value of the bonus to capital production",
+          "type": "integer"
+        },
+        "Capitals": {
+          "description": "list of the capitals the room can produce",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": ["Bonus", "Capitals"]
+    },
+    "Bonus": {
+      "description": "other bonuses the room provides",
+      "type": "string"
+    },
+    "Cost": {
+      "description": "what it takes to build the room",
+      "type": "object",
+      "properties": {
+        "Time": {
+          "description": "number of days to build the room",
+          "type": "integer"
+        },
+        "Recap_Gp": {
+          "description": "alternative cost in gp",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": {
+          "description": "quantity of a specific type of capital units to build the room",
+          "type": "integer"
+      }
+    },
+    "Size": {
+      "description": "number of 5ft squares occupied by the room, or number of people in the team",
+      "type": "object",
+      "properties": {
+        "Size_Min": {
+          "description": "minimum size of the room (number of 5ft squares)",
+          "type": "integer"
+        },
+        "Size_Max": {
+          "description": "maximum size of the room (number of 5ft squares)",
+          "type": "integer"
+        },
+        "Mod_Size": {
+          "description": "the size increase the module provide",
+          "type": "integer"
+        },
+        "Team_Size": {
+          "description": "number of people in the team",
+          "type": "integer"
+        }
+      }
+    },
+    "Upgrade": {
+      "type": "object",
+      "properties": {
+        "To": {
+          "description": "what this rooms this one can be upgraded into"
+        },
+        "From": {
+          "description": "which rooms can be upgraded into this one"
+        }
+      }
+    },
+    "Description": {
+      "description": "additional details about the room",
+      "type": "string"
+    }
+  },
+  "required": ["Name","Cost", "Size", "Description"]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capitals_schema.json",
+  "title": "Capital",
+  "description": "A type of resource to develop a settlement",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "description": "human-readable name",
+      "type": "string"
+    },
+    "Description": {
+      "description": "details about the capital",
+      "type": "string"
+    },
+    "Buy_Value": {
+      "description": "cost in gp to buy one unit of capital",
+      "type": "integer"
+    },
+    "Earn_Value": {
+      "description": "cost in gp to produce one unit of capital",
+      "type": "integer"
+    }
+  },
+  "required": ["Buy_Value", "Earn_Value"]
+}

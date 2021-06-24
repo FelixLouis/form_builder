@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "activities_schema.json",
+  "file_dependencies": [
+    "settlement_sizes.json",
+    "rooms.json",
+    "skills.json"
+  ],
+  "type": "object",
+  "properties": {
+    "Date": {
+      "type": "integer",
+      "description": "the number of days since the origin"
+    },
+    "Settlements": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "Full_Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string",
+            "data": {
+              "isPropertyOf": "settlement_sizes.json"
+            }
+          },
+          "Buildings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Components": {
+                  "type": "array",
+                  "items": {
+                    "data": {
+                      "isPropertyOf": "rooms.json"
+                    }
+                  }
+                },
+                "Owner": {
+                  "data": {
+                    "isPropertyOf": "#/Characters"
+                  }
+                }
+              }
+            }
+          },
+          "Constructions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "Components": {
+                  "type": "array",
+                  "items": {
+                    "data": {
+                      "isPropertyOf": "rooms.json#"
+                    }
+                  }
+                },
+                "Owner": {
+                  "data": {
+                    "isPropertyOf": "#/Characters"
+                  }
+                },
+                "Progression": {
+                  "type": "object",
+                  "TODO": "stashes"
+                }
+              }
+            }
+          },
+          "Characters": {
+            "type": "object",
+            "propertyNames": {
+              "data": {
+                "isPropertyOf": "#/Characters"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "Known_As": {"type": "string"},
+                "Capital": {
+                  "type": "object",
+                  "TODO": "stashes"
+                },
+                "Last_Seen": {"type": "integer"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "Characters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "Location": {
+            "type": "string",
+            "data": {
+              "isPropertyOf": "#/Settlements"
+            }
+          },
+          "Skills": {
+            "type": "object",
+            "propertyNames": {
+              "data": {
+                "isPropertyOf": "skills.json#"
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "Bonus": {"type": "integer"}
+              }
+            }
+          },
+          "Ongoing_Activity": {
+            "type": "string",
+            "enum": [
+              "",
+              "Construct Buildings",
+              "Craft Magic Items",
+              "Craft Mundane Items",
+              "Earn Capital",
+              "Earn Xp",
+              "Gather Information",
+              "Heal Others",
+              "Lead Your Kingdom",
+              "Promote a Business",
+              "Replace Your Animal Companion",
+              "Replace Your Familiar",
+              "Recruit for an Organization",
+              "Research a Spell",
+              "Research Facts and Lore",
+              "Rest",
+              "Retrain",
+              "Run a Business",
+              "Scheme for an Upcoming Adventure",
+              "Train an Animal"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "Thorpe": {
+    "Max_Spending": 2
+  },
+  "Hamlet": {
+    "Max_Spending": 4
+  },
+  "Village": {
+    "Max_Spending": 10
+  },
+  "Small_Town": {
+    "Max_Spending": 15
+  },
+  "Large_Town": {
+    "Max_Spending": 25
+  },
+  "Small_City": {
+    "Max_Spending": 35
+  },
+  "Large_City": {
+    "Max_Spending": 50
+  },
+  "Metropolis": {
+    "Max_Spending": 65
+  }
+}

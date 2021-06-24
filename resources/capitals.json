@@ -1,0 +1,18 @@
+{
+  "Goods": {
+    "Buy_Value": 20,
+    "Earn_Value": 10
+  },
+  "Influence": {
+    "Buy_Value": 30,
+    "Earn_Value": 15
+  },
+  "Labor": {
+    "Buy_Value": 20,
+    "Earn_Value": 10
+  },
+  "Magic": {
+    "Buy_Value": 100,
+    "Earn_Value": 50
+  }
+}
